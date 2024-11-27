@@ -13,30 +13,25 @@ import TestPage from "./pages/TestPage";
 const AppRoutes = () => {
     const routes = [
         {path: '/', element: <MainPage/>},
-        {
-            path: '/picture',
-            element: <PicturePage/>,
-            children: [
-                {path: 'completed', element: <PictureCompletedPage/>},
-                {path: 'select-frame', element: <SelectFramePage/>},
-                {path: 'select-photo', element: <SelectPhotoPage/>},
-                {path: 'success', element: <SuccessPage/>}
-            ]
-        },
+        {path: '/picture',element: <PicturePage/>},
+        {path: '/picture/completed', element: <PictureCompletedPage/>},
+        {path: '/picture/select-frame', element: <SelectFramePage/>},
+        {path: '/picture/select-photo', element: <SelectPhotoPage/>},
+        {path: '/picture/success', element: <SuccessPage/>},
         {path: '/test', element: <TestPage/>},
         {path: '*', element: <NotFoundPage/>}
     ];
 
-  return useRoutes(routes);
+    return useRoutes(routes);
 };
 
 function App() {
-  return (
-      <Router>
-        <ScrollToTop />
-        <AppRoutes />
-      </Router>
-  );
+    return (
+        <Router>
+            <ScrollToTop />
+            <AppRoutes />
+        </Router>
+    );
 }
 
 export default App;

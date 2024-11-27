@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import config from "../config/config";
 
 /**
  * 테스트 페이지
@@ -7,7 +8,8 @@ const TestPage = () => {
     const [message, setMessage] = useState("");
 
     useEffect(() => {
-        const apiUrl = `${process.env.REACT_APP_API_URL}/api/test`;
+        const baseUrl = config.baseURL;
+        const apiUrl = baseUrl + `api/test`;
 
         fetch(apiUrl)
             .then(res => res.text())

@@ -1,8 +1,10 @@
 import React from "react";
+import {useState} from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import logo1 from '../images/icons/stack_dev_logo2.png';
 import logo2 from '../images/icons/arrow_right_black.png';
 import logo3 from '../images/icons/PictureCompletedPage_imoticon.png';
+import config from "../config/config";
 
 
 
@@ -13,19 +15,22 @@ import logo3 from '../images/icons/PictureCompletedPage_imoticon.png';
  */
 
 const PictureCompletedPage = () => {
+    const baseUrl = config.baseURL;
     const location = useLocation();
     const navigate = useNavigate(); // Initialize the useNavigate hook
-    const { photoUrls = [] } = location.state || {};
-
+    const [photoUrls,setPhotoUrls] = useState(location.state.data || {});
+    const [frameid,setFrameid] = useState(location.state.frameid || {});
+    // console.log(location);
+    console.log(location.state.data);
 
     const handleNextClick = () => {
-        navigate('/picture/select-photo', { state: { photoUrls } }); // photoUrls 데이터를 함께 전달
+        navigate(`/picture/select-photo?date=${photoUrls[0].split("_")[2]}_${photoUrls[0].split("_")[3]}&groupid=${photoUrls[0].split("_")[1]}&frameid=${frameid}`, { state: { photoUrls } }); // photoUrls 데이터를 함께 전달
     };
 
     return (
         <div className="camera-container background-yellow">
             <div className="header">
-                <img src={logo1} alt="Stack Logo" className="stack_logo" />
+                <img src={logo1} alt="Stack Logo" className="stack_logo" onClick={() => {navigate('/');}} />
             </div>
             <img src={logo3} alt="imoticon" className="PictureCompletedPage_imoticon" />
 
@@ -50,14 +55,14 @@ const PictureCompletedPage = () => {
                             marginTop: '100px' // 추가: 사진들을 밑으로 내리기 위해 marginTop 설정
                         }}
                     >
-                        {photoUrls.map((photoUrl, index) => (
+                        {photoUrls.map((url, index) => (
                             <div key={index}>
                                 <img
-                                    src={`http://localhost:8080${photoUrl}`}
+                                    src={baseUrl + `api/file?date=${url.split("_")[2]}_${url.split("_")[3]}&groupid=${url.split("_")[1]}&index=${index+1}`}
                                     alt={`사진 ${index + 1}`}
                                     style={{
-                                        width: '200px',
-                                        height: '200px',
+                                        width: '150px',
+                                        height: '150px',
                                         marginBottom: '10px', // 사진과 사진 사이의 간격 조정
                                     }}
                                 />

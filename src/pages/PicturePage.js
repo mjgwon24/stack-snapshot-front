@@ -1,55 +1,54 @@
-import { Outlet, useNavigate, useLocation } from "react-router-dom";
-import axios from "axios";
-import "../css/picture.css";
-import logo1 from "../images/icons/stack_dev_logo2.png";
-import logo2 from "../images/icons/camera_icon.png";
-import logo3 from "../images/icons/picturepage_imoticon.png";
-import chickpeasImage from "../images/icons/chickpeas_7.png";
-import { useRef, useState } from "react";
-
-/**
- * 사진 촬영 페이지
- * @since 2024.10.17
- * author 임석진
- */
-
+import React, { useRef, useState,useEffect } from "react";
+import { useNavigate, Outlet,useSearchParams } from "react-router-dom";
+import axios from 'axios';
+import '../css/picture.css';
+import logo1 from '../images/icons/stack_dev_logo2.png';
+import logo2 from '../images/icons/camera_icon.png';
+import logo3 from '../images/icons/PictureCompletedPage_imoticon.png';
+import chickpeasImage from '../images/icons/chickpeas_2.png';
+import config from "../config/config";
 const PicturePage = ({ setTeamId }) => {
     const navigate = useNavigate();
-    const location = useLocation();
-    const { selectedFrameID } = location.state || { selectedFrameID: 1 }; // 기본값 설정
-
     const videoRef = useRef(null);
     const canvasRef = useRef(null);
     const [isCapturing, setIsCapturing] = useState(false);
     const [isCameraStarted, setIsCameraStarted] = useState(false);
     const [countdown, setCountdown] = useState(null);
+    const [photoNumber, setPhotoNumber] = useState(1);
 
-    // 프레임 크기 설정
+
+    const [searchParams, setSearchParams]=useSearchParams();
+
+    const frameid = searchParams.get('frameid');
+    const groupid = searchParams.get("groupid");
+    const date = searchParams.get("date");
+
+
+
+    useEffect(() => {
+    }, [date,groupid,frameid]);
+
     const frameSizes = {
         1: { width: 273, height: 373 },
-        2: { width: 272, height: 205 },
+        2: { width: 270, height: 330 },
         3: { width: 272, height: 328 },
-        4: { width: 340, height: 273 },
+        4: { width: 340, height: 272 }
     };
+    const { width, height } = frameSizes[frameid];
 
-    const { width, height } = frameSizes[selectedFrameID] || frameSizes[1];
-
-    // 카메라 시작 핸들러
     const startCamera = async () => {
         try {
             const stream = await navigator.mediaDevices.getUserMedia({
-                video: { width, height, facingMode: "user" },
+                video: { width, height, facingMode: 'user' }
             });
             if (videoRef.current) {
                 videoRef.current.srcObject = stream;
             }
             setIsCameraStarted(true);
         } catch (err) {
-            console.error("카메라 접근에 실패했습니다:", err);
+            console.error('카메라 접근에 실패했습니다:', err);
         }
     };
-
-    // 사진 촬영 및 업로드 핸들러
     const captureAndUploadPhotos = async () => {
         setIsCapturing(true);
         const photoCount = 6;
@@ -63,13 +62,22 @@ const PicturePage = ({ setTeamId }) => {
             setCountdown(null);
 
             if (videoRef.current && canvasRef.current) {
-                const context = canvasRef.current.getContext("2d");
+
+
+
+
+
+                const context = canvasRef.current.getContext('2d');
                 canvasRef.current.width = videoRef.current.videoWidth;
                 canvasRef.current.height = videoRef.current.videoHeight;
+
+                context.translate(canvasRef.current.width, 0);
+
+                context.scale(-1, 1);
                 context.drawImage(videoRef.current, 0, 0, canvasRef.current.width, canvasRef.current.height);
 
                 const blob = await new Promise((resolve) => {
-                    canvasRef.current.toBlob(resolve, "image/png");
+                    canvasRef.current.toBlob(resolve, 'image/png');
                 });
 
                 if (blob) {
@@ -83,44 +91,54 @@ const PicturePage = ({ setTeamId }) => {
             await new Promise((resolve) => setTimeout(resolve, 1000));
         }
 
-        try {
-            const response = await axios.post("http://localhost:8080/api/origin-upload", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            });
-            console.log("Upload response:", response.data);
-
-            const photoUrlsResponse = await axios.get("http://localhost:8080/api/photos");
-            if (photoUrlsResponse.data && Array.isArray(photoUrlsResponse.data)) {
-                console.log("Fetched photo URLs:", photoUrlsResponse.data);
-
-                navigate("/picture/completed", { state: { photoUrls: photoUrlsResponse.data } });
-            } else {
-                console.error("사진 URL을 가져오는 데 문제가 있습니다.");
-                alert("사진 URL을 가져오는 데 문제가 있습니다. 다시 시도해 주세요.");
-            }
-        } catch (error) {
-            console.error("사진 업로드 실패:", error);
-            alert("사진 업로드에 실패했습니다.");
+        const uploadResult = await uploadPhotos(formData);
+        if (!uploadResult) {
+            console.error("사진 업로드에 문제가 있습니다.");
         }
         setIsCapturing(false);
+    };
+
+    const uploadPhotos = async (formData) => {
+        try {
+            const baseUrl = config.baseURL;
+            const response = await axios.post(baseUrl + 'api/origin-upload', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            console.log("Upload response:", response.data);
+            // window.location.href="/picture/select-photo?groupid=0";
+            navigate("/picture/completed", {
+                state: {
+                    data: response.data,
+                    frameid:frameid
+                }
+            });
+            return response.data;
+        } catch (err) {
+            console.error('사진 업로드 실패:', err);
+            alert('사진 업로드에 실패했습니다.');
+            return null;
+        }
     };
 
     return (
         <div className="camera-container background-yellow">
             <div className="header">
-                <img src={logo1} alt="Stack Logo" className="stack_logo" />
+                <img src={logo1} alt="Stack Logo" className="stack_logo"
+                     onClick={() => {navigate('/');}} />
             </div>
-            {!isCameraStarted && <img src={logo3} alt="imoticon" className="imoticon" />}
+            {!isCameraStarted && (
+                <img src={logo3} alt="imoticon" className="imoticon" />
+            )}
 
             <video
                 ref={videoRef}
                 autoPlay
                 playsInline
-                style={{ width: `${width}px`, height: `${height}px`, marginBottom: "20px" }}
+                style={{ width: `${width}px`, height: `${height}px`, marginBottom: '20px',transform: 'scaleX(-1)' }}
             ></video>
-            <canvas ref={canvasRef} style={{ display: "none" }}></canvas>
+            <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
 
             {countdown && (
                 <div className="countdown">
@@ -135,19 +153,21 @@ const PicturePage = ({ setTeamId }) => {
                     </button>
                 )}
                 {isCameraStarted && (
-                    <button
-                        className="camera-button weight-500"
-                        onClick={captureAndUploadPhotos}
-                        disabled={isCapturing}
-                    >
+                    <>
                         <img src={chickpeasImage} alt="Chickpeas Icon" className="chickpeas-icon" />
-                        {isCapturing ? "촬영 중..." : "사진 촬영"}{" "}
-                        <img src={logo2} alt="Camera icon" className="camera-icon" />
-                    </button>
+                        <button
+                            className={`camera-button weight-500`}
+                            onClick={captureAndUploadPhotos}
+                            disabled={isCapturing}
+                        >
+
+
+                            {isCapturing ? "촬영 중..." : "사진 촬영"} <img src={logo2} alt="Camera icon" className="camera-icon" />
+                        </button>
+                    </>
                 )}
             </div>
 
-            <Outlet />
         </div>
     );
 };
