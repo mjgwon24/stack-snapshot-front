@@ -7,26 +7,24 @@ import logo2 from '../images/icons/camera_icon.png';
 import logo3 from '../images/icons/PictureCompletedPage_imoticon.png';
 import chickpeasImage from '../images/icons/chickpeas_2.png';
 import config from "../config/config";
+import cameraSound from '../sound/camera-shutter.mp3';
+
 const PicturePage = ({ setTeamId }) => {
     const navigate = useNavigate();
     const videoRef = useRef(null);
     const canvasRef = useRef(null);
+    const flashRef = useRef(null); // 플래시 효과용 ref
     const [isCapturing, setIsCapturing] = useState(false);
     const [isCameraStarted, setIsCameraStarted] = useState(false);
     const [countdown, setCountdown] = useState(null);
     const [photoNumber, setPhotoNumber] = useState(1);
-
-
-    const [searchParams, setSearchParams]=useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const frameid = searchParams.get('frameid');
     const groupid = searchParams.get("groupid");
     const date = searchParams.get("date");
 
-
-
-    useEffect(() => {
-    }, [date,groupid,frameid]);
+    useEffect(() => {}, [date, groupid, frameid]);
 
     const frameSizes = {
         1: { width: 273, height: 373 },
@@ -49,30 +47,39 @@ const PicturePage = ({ setTeamId }) => {
             console.error('카메라 접근에 실패했습니다:', err);
         }
     };
+
+    const triggerFlash = () => {
+        if (flashRef.current) {
+            flashRef.current.classList.add('active');
+            setTimeout(() => {
+                flashRef.current.classList.remove('active');
+            }, 200);
+        }
+    };
+
+    const playShutterSound = () => {
+        const sound = new Audio(cameraSound);
+        sound.play();
+    };
+
     const captureAndUploadPhotos = async () => {
         setIsCapturing(true);
         const photoCount = 6;
         const formData = new FormData();
 
         for (let i = 0; i < photoCount; i++) {
-            for (let j = 5; j > 0; j--) {
+            for (let j = 1; j > 0; j--) {
                 setCountdown(j);
                 await new Promise((resolve) => setTimeout(resolve, 1000));
             }
             setCountdown(null);
 
             if (videoRef.current && canvasRef.current) {
-
-
-
-
-
                 const context = canvasRef.current.getContext('2d');
                 canvasRef.current.width = videoRef.current.videoWidth;
                 canvasRef.current.height = videoRef.current.videoHeight;
 
                 context.translate(canvasRef.current.width, 0);
-
                 context.scale(-1, 1);
                 context.drawImage(videoRef.current, 0, 0, canvasRef.current.width, canvasRef.current.height);
 
@@ -88,6 +95,11 @@ const PicturePage = ({ setTeamId }) => {
                     return;
                 }
             }
+
+            // 촬영 효과
+            triggerFlash();
+            playShutterSound();
+
             await new Promise((resolve) => setTimeout(resolve, 1000));
         }
 
@@ -107,11 +119,10 @@ const PicturePage = ({ setTeamId }) => {
                 }
             });
             console.log("Upload response:", response.data);
-            // window.location.href="/picture/select-photo?groupid=0";
             navigate("/picture/completed", {
                 state: {
                     data: response.data,
-                    frameid:frameid
+                    frameid: frameid
                 }
             });
             return response.data;
@@ -124,9 +135,9 @@ const PicturePage = ({ setTeamId }) => {
 
     return (
         <div className="camera-container background-yellow">
+            <div ref={flashRef} className="flash"></div> {/* 플래시 효과 */}
             <div className="header">
-                <img src={logo1} alt="Stack Logo" className="stack_logo"
-                     onClick={() => {navigate('/');}} />
+                <img src={logo1} alt="Stack Logo" className="stack_logo" onClick={() => { navigate('/'); }} />
             </div>
             {!isCameraStarted && (
                 <img src={logo3} alt="imoticon" className="imoticon" />
@@ -136,7 +147,7 @@ const PicturePage = ({ setTeamId }) => {
                 ref={videoRef}
                 autoPlay
                 playsInline
-                style={{ width: `${width}px`, height: `${height}px`, marginBottom: '20px',transform: 'scaleX(-1)' }}
+                style={{ width: `${width}px`, height: `${height}px`, marginBottom: '20px', transform: 'scaleX(-1)' }}
             ></video>
             <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
 
@@ -160,14 +171,11 @@ const PicturePage = ({ setTeamId }) => {
                             onClick={captureAndUploadPhotos}
                             disabled={isCapturing}
                         >
-
-
                             {isCapturing ? "촬영 중..." : "사진 촬영"} <img src={logo2} alt="Camera icon" className="camera-icon" />
                         </button>
                     </>
                 )}
             </div>
-
         </div>
     );
 };

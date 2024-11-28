@@ -36,21 +36,26 @@
 
 .weight-400 {
     font-family: Pretendard-Regular, sans-serif;
+    color: black;
 }
 
 .weight-500 {
     font-family: Pretendard-Medium, sans-serif;
+    color: black;
 }
 
 .weight-600 {
+    color: black;
     font-family: Pretendard-SemiBold, sans-serif;
 }
 
 .weight-700 {
+    color: black;
     font-family: Pretendard-Bold, sans-serif;
 }
 
 .weight-800 {
+    color: black;
     font-family: Pretendard-ExtraBold, sans-serif;
 }
 
