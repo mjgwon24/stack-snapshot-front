@@ -153,7 +153,7 @@ const SuccessPage = () => {
                             zIndex: 1020 // 다른 요소 위에 표시되도록
                         }} />
                         <div style={{display:"flex",justifyContent:"end",paddingRight:"30px",paddingTop:"30px"}}>
-                            <button style={{background:"none",border:"none",fontSize:"3rem"}} onClick={closeModal}>×</button>
+                            <button style={{background:"none",border:"none",fontSize:"3rem",color:"#000"}} onClick={closeModal}>×</button>
                         </div>
 
                         <h2 style={{
