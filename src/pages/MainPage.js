@@ -26,76 +26,80 @@ const MainPage = () => {
     width: "100vw",
     height: "100vh",
     zIndex: -1,
+    overflow: "hidden",
   }}
 >
-  {/* 첫 번째 이미지 */}
+  {/* 유형2 이미지 컨테이너 */}
   <div
+    className="rolling-images"
     style={{
       position: "absolute",
+      top: 0,
       right: "20%",
-      animation: "slideUp 45s linear infinite",
+      width: "327px",
+      height: "6050px", // 원본 높이 + marginBottom(50px) 고려
+      animation: "rolling 30s linear infinite",
     }}
   >
     <img
       src={imageSrc3}
       alt="유형2"
-      style={{ width: "327px", height: "3000px" }}
+      style={{ width: "100%", height: "50%", marginBottom: "50px" }}
+    />
+    <img
+      src={imageSrc3}
+      alt="유형2 반복"
+      style={{ width: "100%", height: "50%", marginBottom: "50px" }}
     />
   </div>
 
-
-
-
-
-{/* 애니메이션 효과 추가 */}
-<style>
-  {`
-   @keyframes slideUp {
-      0% {
-        transform: translateY(100vh); /* 화면 맨 아래에서 시작 */
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-3000px); /* 화면 위로 나가서 사라짐 */
-        opacity: 1;
-      }
-    }
-  `}
-</style>
-
-
-  {/* 두 번째 이미지 */}
+  {/* 유형1 이미지 컨테이너 */}
   <div
+    className="rolling-images"
     style={{
       position: "absolute",
+      top: 0,
       right: "0%",
-      animation: "slideUp1 45s linear infinite",
+      width: "246px",
+      height: "5850px", // 원본 높이 + marginBottom(50px) 고려
+      animation: "rolling-reverse 45s linear infinite",
     }}
   >
     <img
       src={imageSrc4}
       alt="유형1"
-      style={{ width: "246px", height: "2900px" }}
+      style={{ width: "100%", height: "50%", marginBottom: "50px" }}
+    />
+    <img
+      src={imageSrc4}
+      alt="유형1 반복"
+      style={{ width: "100%", height: "50%", marginBottom: "50px" }}
     />
   </div>
 </div>
 
-{/* 애니메이션 효과 추가 */}
 <style>
   {`
-    
-    @keyframes slideUp1 {
+    @keyframes rolling {
       0% {
-        transform: translateY(100vh); /* 화면 맨 아래에서 시작 */
-        opacity: 1;
+        transform: translateY(0);
       }
       100% {
-        transform: translateY(-2900px); /* 화면 위로 나가서 사라짐 */
-        opacity: 1;
+        transform: translateY(-3100px); /* 기존 높이 + marginBottom */
+      }
+    }
+
+    @keyframes rolling-reverse {
+      0% {
+        transform: translateY(-3100px); /* 기존 높이 + marginBottom */
+      }
+      100% {
+        transform: translateY(0);
       }
     }
   `}
 </style>
+
 
 
       {/* 상단 컨텐츠 섹션 */}
