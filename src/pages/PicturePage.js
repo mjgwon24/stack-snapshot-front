@@ -74,7 +74,7 @@ const PicturePage = ({ setTeamId }) => {
         const formData = new FormData();
 
         for (let i = 0; i < photoCount; i++) {
-            for (let j = 1; j > 0; j--) {
+            for (let j = 5; j > 0; j--) {
                 setCountdown(j);
                 await new Promise((resolve) => setTimeout(resolve, 1000));
             }
