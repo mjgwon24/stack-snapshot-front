@@ -2,7 +2,7 @@
     font-family: Pretendard-Bold, sans-serif;
     font-size: 37px;
     position: relative;
-    top: -30px; /* 음수 값을 사용해 텍스트를 위로 이동 */
+    top: -30px;
     margin-left: 20px;
 }
 video {
@@ -30,14 +30,14 @@ video {
 
 .imoticon {
     width: 280px;
-    position: absolute; /* 이모티콘을 절대 위치로 고정 */
+    position: absolute;
     top: 70px;
-    left: 250px; /* 왼쪽에서 간격을 조절 */
+    left: 250px;
 }
 
 .PictureCompletedPage_imoticon {
     width: 280px;
-    position: absolute; /* 이모티콘을 절대 위치로 고정 */
+    position: absolute;
     top: 40px;
     left: 510px;
 }
@@ -48,7 +48,8 @@ video {
     width: 134px;
 
 }
-/* 전체 배경 스타일 */
+
+
 .camera-container {
     display: flex;
     flex-direction: column;
@@ -119,16 +120,16 @@ video {
     border-radius: 10px;
     background-color: white;
     cursor: pointer;
-    position: absolute; /* 위치를 절대값으로 지정 */
+    position: absolute;
     right: 200px;
-    transition: all 0.3s ease; /* 움직임에 애니메이션 효과 추가 */
+    transition: all 0.3s ease;
     width: 261px;
     height: 75px;
 }
 
 .camera-button-right {
-    right: 300px; /* 카메라가 시작되면 오른쪽으로 이동 */
-    transform: translateX(0); /* 오른쪽으로 이동 시 중앙 정렬 제거 */
+    right: 300px;
+    transform: translateX(0);
 }
 .next-button {
     margin-top: 30px;
@@ -141,8 +142,8 @@ video {
     border-radius: 10px;
     background-color: white;
     cursor: pointer;
-    width: 150px;  /* 너비를 185px로 설정 */
-    height: 68px; /* 높이를 73.2px로 설정 */
+    width: 150px;
+    height: 68px;
 }
 .chickpeas-icon {
     position: absolute;
@@ -171,14 +172,14 @@ video {
 
 .photo-container {
     display: flex;
-    justify-content: center; /* 중앙 정렬 */
-    gap: 10px; /* 정사각형 간격 */
-    margin-top: 300px; /* 위쪽 간격 */
+    justify-content: center;
+    gap: 10px;
+    margin-top: 300px;
 }
 
 .photo {
     width: 175px;
     height: 175px;
-    background-color: white; /* 배경색 설정 */
-    border: 1px solid black; /* 테두리 설정 */
+    background-color: white;
+    border: 1px solid black;
 }

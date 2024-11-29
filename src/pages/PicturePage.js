@@ -9,6 +9,12 @@ import chickpeasImage from '../images/icons/chickpeas_2.png';
 import config from "../config/config";
 import cameraSound from '../sound/camera-shutter.mp3';
 
+/**
+ * 메인 페이지
+ * @since
+ * author 임석진
+ */
+
 const PicturePage = ({ setTeamId }) => {
     const navigate = useNavigate();
     const videoRef = useRef(null);
