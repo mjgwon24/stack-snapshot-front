@@ -9,6 +9,9 @@ import SelectPhotoPage from "./pages/SelectPhotoPage";
 import SuccessPage from "./pages/SuccessPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import TestPage from "./pages/TestPage";
+import PrizeDrawPage from "./pages/PrizeDrawPage";
+import DrawResultPage from "./pages/DrawResultPage";
+
 
 const AppRoutes = () => {
     const routes = [
@@ -19,6 +22,8 @@ const AppRoutes = () => {
         {path: '/picture/select-photo', element: <SelectPhotoPage/>},
         {path: '/picture/success', element: <SuccessPage/>},
         {path: '/test', element: <TestPage/>},
+        {path: '/picture/draw', element: <PrizeDrawPage /> },
+        { path: "/picture/draw-result", element: <DrawResultPage /> },
         {path: '*', element: <NotFoundPage/>}
     ];
 

@@ -1,4 +1,11 @@
 .logo{left: 27px;top:22px;width: 136px;height: 78px;}
+.blank{
+    background-color: #000000;
+    opacity: 0.0;
+}
+.notblank{
+    z-index: -5;
+}
 .next-btn{
     display: grid; align-items: bottom; place-items: end; height: 100%
 }
