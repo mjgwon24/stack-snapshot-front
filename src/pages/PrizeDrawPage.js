@@ -25,11 +25,11 @@ const PrizeDrawPage = () => {
         }
 
         const prizes = {
-            1: "USB",
-            2: "배달의민족 상품권",
+            1: "꽝",
+            2: "꽝",
+            3: "USB",
             4: "USB",
-            5: "USB",
-            7: "USB",
+            5: "꽝",
         };
         localStorage.setItem("prizes", JSON.stringify(prizes));
     }, []);

@@ -168,6 +168,31 @@ video {
 
 }
 
+.photo-number-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50px;
+    transform: translateY(-50%);
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.8); /* 약간의 배경 */
+    padding: 10px 15px;
+    border-radius: 8px;
+}
+.countdown {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    font-size: 100px; /* 글자 크기 */
+    font-weight: bold;
+    color: black;
+    z-index: 1000;
+    pointer-events: none;
+}
+
 
 
 .photo-container {
