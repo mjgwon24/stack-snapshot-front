@@ -3,6 +3,8 @@
 
 [![Contributors](https://img.shields.io/badge/contributors-4-brightgreen)](#-기여자-contributors)  
 
+<img width="1725" alt="스크린샷 2024-12-03 18 06 21" src="https://github.com/user-attachments/assets/c65b1d28-420b-4349-8791-9afb76e213e5">
+
 **Stack Snapshot**은 '인생네컷'과 유사한 기능을 제공하는 사진 추억 남기기 서비스로, **경북 2024 해커톤**에서 참가자들의 소중한 추억을 기록해주는 프로젝트입니다. 사용자는 다양한 프레임을 적용해 사진을 찍고, 소중한 추억을 남길 수 있습니다. 이 프로젝트의 프론트엔드는 **React**와 **CSS**를 기반으로 기반으로 이루어져있습니다.
 
 ---
