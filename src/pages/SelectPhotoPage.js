@@ -12,6 +12,7 @@ import frame4_1 from "../images/frames/4-1.png"
 import frame4_2 from "../images/frames/4-2.png"
 import blank from "../images/blank.png"
 import config from "../config/config";
+
 /**
  * 사진 선택 페이지
  * @since 2024.10.29

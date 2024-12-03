@@ -2,8 +2,8 @@ import React from "react";
 import imageSrc from '../images/icons/stack_dev_logo1.png';
 import imageSrc3 from '../images/icons/photo3.png';
 import imageSrc4 from '../images/icons/photo4.png';
-import "../css/MainPage.css"
-
+import "../css/mainPage.css"
+import "../css/style.css"
 import {useNavigate} from 'react-router-dom';
 
 /**
