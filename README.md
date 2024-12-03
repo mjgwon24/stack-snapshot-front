@@ -8,14 +8,16 @@
 ---
 
 ## 🧑‍💻 기여자
-[![Contributors](https://img.shields.io/badge/contributors-4-brightgreen)](#-기여자-contributors)  
+[![Contributors](https://img.shields.io/badge/contributors-5-brightgreen)](#-기여자-contributors)  
 
 | 이름         | Github 프로필            | 역할                              | 사용 언어 |
 |--------------|--------------------------|-----------------------------------|-------------|
-| **권민지** | [mjgwon24](https://github.com/mjgwon24) | PM & frontend & backend           | React, JavaScript, CSS |
-| **김이현** | [lh7721004](https://github.com/lh7721004) | frontend & backend        | React, JavaScript, CSS |
-| **임석진** | [seokjin925](https://github.com/seokjin925) | frontend & backend                 | React, JavaScript, CSS |
-| **김현나** | [nanaring1](https://github.com/nanaring1) | frontend                 | React, JavaScript, CSS |
+| **권민지** | [mjgwon24](https://github.com/mjgwon24) | PM & frontend & backend           | Java, JavaScript, React |
+| **김이현** | [lh7721004](https://github.com/lh7721004) | frontend & backend        | Java, JavaScript, React |
+| **임석진** | [seokjin925](https://github.com/seokjin925) | frontend & backend                 | Java, JavaScript, React |
+| **이수헌** | [suheon927](https://github.com/suheon927) | backend                 | Java |
+| **김현나** | [nanaring1](https://github.com/nanaring1) | frontend                | JavaScript, React |
+| **구세영** | [wybh930](https://github.com/wybh930) | frontend               | JavaScript, React |
 
 ---
 
@@ -72,55 +74,44 @@
   
 ---
 
-## 📂 프로젝트 구조
+## 📑 페이지별 기능
 
-```plaintext
-src/
-├── components/             # 재사용 가능한 UI 컴포넌트
-├── css/                    # 스타일 관련 파일
-├── images/                 # 이미지 파일
-├── pages/                  # 앱의 주요 화면
-├── App.js                  # 앱 진입점
-├── index.js                # 애플리케이션 시작 지점
-├── reportWebVitals.js      # 성능 리포트 설정
-├── setupTests.js           # 테스트 설정
-public/
-├── index.html              # HTML 파일
-.gitignore                  # Git에서 제외할 파일 목록
-package.json                # 프로젝트 의존성 관리 파일
-package-lock.json           # 의존성 정확한 버전 관리
-README.md                  # 프로젝트 설명 파일
-```
+### [ 프레임 선택 ]
+다양한 프레임 중에서 원하는 디자인을 선택하여 사진에 적용할 수 있습니다.
 
----
+<img width="950" alt="스크린샷 2024-12-03 18 43 20" src="https://github.com/user-attachments/assets/bfe759ba-07e4-47cd-9212-f4bcdc91dfc0">
 
-## 💻 설치 방법
 
-1. 저장소 클론
+### [ 사진 촬영 ]
 
-```bash
-git clone https://github.com/mjgwon24/stack-snapshot-front.git
-```
+사용자는 카메라를 통해 실시간으로 사진을 촬영할 수 있습니다.
 
-2. 프로젝트 디렉터리로 이동
+<img width="950" alt="스크린샷 2024-12-03 18 43 20" src="https://github.com/user-attachments/assets/623f892d-0965-4bb4-a3eb-4ed9b99676e2">
 
-```bash
-cd stack-snapshot-front
-```
 
-3. 필요한 의존성 설치
 
-```bash
-npm install
-```
+### [ 사진 선택 ]
 
-4. 로컬 서버 실행
+사용자가 원하는 사진을 선택하고 편집할 수 있습니다.
 
-```bash
-npm start
-```
+<img width="950" alt="스크린샷 2024-12-03 19 23 21" src="https://github.com/user-attachments/assets/f48ed16e-5369-4fe8-8db6-8349e64ccd8f">
 
-5. 로컬에서 `http://localhost:3000` 에 접속하여 서비스 확인
+
+### [ QR 코드 다운로드 ]
+
+QR 코드를 생성하여 사진 다운로드 링크를 제공합니다.
+
+<img width="950" alt="스크린샷 2024-12-03 19 25 06" src="https://github.com/user-attachments/assets/5ee50394-9f66-4300-93eb-a6bd961c0b49">
+<img width="950" alt="스크린샷 2024-12-03 19 26 33" src="https://github.com/user-attachments/assets/d130d986-ee14-4946-abb2-14c93e87f8ba">
+
+
+### [ 경품 뽑기 ]
+
+이벤트 경품 뽑기 페이지를 통해 경품을 뽑을 수 있습니다.
+
+<img width="950" alt="스크린샷 2024-12-03 19 28 14" src="https://github.com/user-attachments/assets/b6ae2e7f-ed93-41eb-aab0-6463a1c2934b">
+<img width="950" alt="스크린샷 2024-12-03 19 28 39" src="https://github.com/user-attachments/assets/5b25d942-d2db-4f52-9751-526b3767a1ae">
+
 
 ---
 
