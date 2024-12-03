@@ -5,7 +5,8 @@ import logo1 from '../images/icons/stack_dev_logo2.png';
 import logo2 from '../images/icons/arrow_right_black.png';
 import logo3 from '../images/icons/PictureCompletedPage_imoticon.png';
 import config from "../config/config";
-
+import "../css/mainPage.css"
+import "../css/style.css"
 
 
 /**
@@ -13,7 +14,6 @@ import config from "../config/config";
  * @since 2024.10.17
  * author 임석진
  */
-
 const PictureCompletedPage = () => {
     const baseUrl = config.baseURL;
     const location = useLocation();
@@ -45,26 +45,12 @@ const PictureCompletedPage = () => {
                 {photoUrls.length === 0 ? (
                     <p>사진이 없습니다.</p>
                 ) : (
-                    <div
-                        className="photos-grid"
-                        style={{
-                            display: 'flex',
-                            gap: '55px',
-                            flexWrap: 'wrap',
-                            justifyContent: 'center',
-                            marginTop: '100px' // 추가: 사진들을 밑으로 내리기 위해 marginTop 설정
-                        }}
-                    >
+                    <div className="flex justify-center gap-55px flex-wrap photos-grid margin-top-100px">
                         {photoUrls.map((url, index) => (
                             <div key={index}>
-                                <img
+                                <img className="width-150px height-150px margin-bottom-10px"
                                     src={baseUrl + `api/file?date=${url.split("_")[2]}_${url.split("_")[3]}&groupid=${url.split("_")[1]}&index=${index+1}`}
                                     alt={`사진 ${index + 1}`}
-                                    style={{
-                                        width: '150px',
-                                        height: '150px',
-                                        marginBottom: '10px', // 사진과 사진 사이의 간격 조정
-                                    }}
                                 />
                             </div>
                         ))}
