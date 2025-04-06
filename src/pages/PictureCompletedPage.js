@@ -5,7 +5,7 @@ import logo1 from '../images/icons/stack_dev_logo2.png';
 import logo2 from '../images/icons/arrow_right_black.png';
 import logo3 from '../images/icons/PictureCompletedPage_imoticon.png';
 import config from "../config/config";
-import "../css/mainPage.css"
+import "../css/page.css"
 import "../css/style.css"
 
 

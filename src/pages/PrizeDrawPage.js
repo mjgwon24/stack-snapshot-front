@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import imageSrc from "../images/icons/stack_dev_logo1.png";
 import emojiSrc from "../images/icons/chickpeas_7.png";
 import videoSrc from "../videos/goose_lucky_egg.mp4";
-import "../css/mainPage.css"
+import "../css/page.css"
 import "../css/style.css"
 
 /**

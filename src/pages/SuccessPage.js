@@ -5,7 +5,7 @@ import chickpeas_1 from '../images/icons/chickpeas_4.png';
 import chickpeas_2 from '../images/icons/chickpeas_5.png';
 import chickpeas_3 from '../images/icons/chickpeas_3.png';
 import config from "../config/config";
-import "../css/mainPage.css"
+import "../css/page.css"
 import "../css/style.css"
 
 /**

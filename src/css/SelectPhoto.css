@@ -6,35 +6,33 @@
 .notblank{
     z-index: -5;
 }
-.next-btn{
-    display: grid; align-items: bottom; place-items: end; height: 100%
-}
+
 .grid-title{
     grid-column-start: 2; grid-column-end: 5; display: grid; align-items: center; justify-items: center;
 }
 .grid-frame{display: grid; align-items: center; justify-items: center; height: 100%}
-.frame{position:absolute;}
+/*.frame{position:absolute;}*/
 
 .frame1.small, .frame2.small, .frame3.small{
     width: 125px;
     height: 192px;
 }
-.frame1.small{
-    top:249px;
-    left:731px;
-}
-.frame2.small{
-    top:249px;
-    left:897px;
-}
-.frame3.small{
-    top:472px;
-    left:731px;
-}
-.frame4.small{
-    top:497px;
-    left:896px;
-}
+/*.frame1.small{*/
+/*    top:249px;*/
+/*    left:731px;*/
+/*}*/
+/*.frame2.small{*/
+/*    top:249px;*/
+/*    left:897px;*/
+/*}*/
+/*.frame3.small{*/
+/*    top:472px;*/
+/*    left:731px;*/
+/*}*/
+/*.frame4.small{*/
+/*    top:497px;*/
+/*    left:896px;*/
+/*}*/
 .frame1.big, .frame2.big, .frame3.big{
     width: 330px;
     height: 506px;

@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/mainPage.css"
+import "../css/page.css"
 import "../css/style.css"
 
 /**

@@ -2,12 +2,14 @@ import React, { useRef, useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import "../css/picture.css";
+import "../css/style.css";
 import logo1 from "../images/icons/stack_dev_logo2.png";
 import logo2 from "../images/icons/camera_icon.png";
 import logo3 from "../images/icons/PictureCompletedPage_imoticon.png";
 import chickpeasImage from "../images/icons/chickpeas_2.png";
 import config from "../config/config";
 import cameraSound from "../sound/camera-shutter.mp3";
+import logo from "../images/icons/stack_dev_logo2.png";
 
 /**
  * 메인 페이지
@@ -146,17 +148,15 @@ const PicturePage = ({ setTeamId }) => {
     };
 
     return (
-        <div className="camera-container background-yellow">
+        <div className="camera-container">
             <div ref={flashRef} className="flash"></div>
             {/* 플래시 효과 */}
-            <div className="header">
+            <div className="width-full flex justify-center">
                 <img
-                    src={logo1}
-                    alt="Stack Logo"
-                    className="stack_logo"
-                    onClick={() => {
-                        navigate("/");
-                    }}
+                    className="logo"
+                    onClick={() => navigate('/')}
+                    src={logo}
+                    alt="stack_dev_logo1"
                 />
             </div>
             {!isCameraStarted && <img src={logo3} alt="imoticon" className="imoticon" />}
@@ -172,7 +172,7 @@ const PicturePage = ({ setTeamId }) => {
                 style={{
                     width: `${width}px`,
                     height: `${height}px`,
-                    marginBottom: "20px",
+                    marginTop: "80px",
                     transform: "scaleX(-1)",
                 }}
             ></video>
@@ -187,7 +187,7 @@ const PicturePage = ({ setTeamId }) => {
 
             <div className="camera-button-container">
                 {!isCameraStarted && (
-                    <button className="camera-start-button weight-500" onClick={startCamera}>
+                    <button className="camera-start-button weight-600" onClick={startCamera}>
                         사진 촬영
                     </button>
                 )}
@@ -195,7 +195,7 @@ const PicturePage = ({ setTeamId }) => {
                     <>
                         <img src={chickpeasImage} alt="Chickpeas Icon" className="chickpeas-icon" />
                         <button
-                            className={`camera-button weight-500`}
+                            className={`camera-button weight-600`}
                             onClick={captureAndUploadPhotos}
                             disabled={isCapturing}
                         >

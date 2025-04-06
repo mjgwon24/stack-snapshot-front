@@ -30,9 +30,9 @@ video {
 
 .imoticon {
     width: 280px;
-    position: absolute;
-    top: 70px;
-    left: 250px;
+    position: relative;
+    top: 100px;
+    left: 170px;
 }
 
 .PictureCompletedPage_imoticon {

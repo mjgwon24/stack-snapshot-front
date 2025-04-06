@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import imageSrc from "../images/icons/stack_dev_logo1.png";
-import "../css/mainPage.css"
+import "../css/page.css"
 import "../css/style.css"
 
 /**
