@@ -78,3 +78,31 @@ p {
 .black-100 {
     color: #020E2E;
 }
+
+.display-none {
+    display: none;
+}
+
+@media (min-width: 640px) {
+    .sm\:display-block {
+        display: block;
+    }
+}
+
+@media (min-width: 768px) {
+    .md\:display-block {
+        display: block;
+    }
+}
+
+@media (min-width: 1024px) {
+    .lg\:display-block {
+        display: block;
+    }
+}
+
+@media (min-width: 1280px) {
+    .xl\:display-block {
+        display: block;
+    }
+}
