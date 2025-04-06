@@ -94,7 +94,8 @@
 
 사용자는 카메라를 통해 실시간으로 사진을 촬영할 수 있습니다.
 
-<img width="950" alt="스크린샷 2024-12-03 18 43 20" src="https://github.com/user-attachments/assets/623f892d-0965-4bb4-a3eb-4ed9b99676e2">
+<img width="950" alt="스크린샷 2024-12-03 18 43 20" src="https://github.com/user-attachments/assets/70656de4-fbb8-4fb0-9c02-aa253deb4ae3">
+
 
 
 <br/>
