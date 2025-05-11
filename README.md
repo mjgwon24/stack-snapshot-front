@@ -30,7 +30,9 @@
 
 ---
 
-## 🛠️ 기술 스택
+## 🛠️ 기술 스택 및 아키텍처
+
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/d8f9e4cb-d893-4e93-ba7b-d2edd290883c" />
 
 - **Frontend**
    - JavaScript
@@ -39,6 +41,7 @@
 - **배포**
    - Ubuntu
    - Nginx
+   - Naver Cloud Server
 - **협업 및 테스트**
     -   Git
     -   Notion
