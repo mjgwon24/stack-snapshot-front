@@ -6,7 +6,6 @@ import logo1 from "../images/icons/stack_dev_logo2.png";
 import logo2 from "../images/icons/camera_icon.png";
 import logo3 from "../images/icons/PictureCompletedPage_imoticon.png";
 import chickpeasImage from "../images/icons/chickpeas_2.png";
-import config from "../config/config";
 import cameraSound from "../sound/camera-shutter.mp3";
 
 /**
@@ -124,8 +123,7 @@ const PicturePage = ({ setTeamId }) => {
 
     const uploadPhotos = async (formData) => {
         try {
-            const baseUrl = config.baseURL;
-            const response = await axios.post(baseUrl + "api/origin-upload", formData, {
+            const response = await axios.post(process.env.BACKEND_URL + "/origin-upload", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },

@@ -4,7 +4,6 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import chickpeas_1 from '../images/icons/chickpeas_4.png';
 import chickpeas_2 from '../images/icons/chickpeas_5.png';
 import chickpeas_3 from '../images/icons/chickpeas_3.png';
-import config from "../config/config";
 import "../css/mainPage.css"
 import "../css/style.css"
 
@@ -14,7 +13,6 @@ import "../css/style.css"
  * @author 김현나, 임석진
  */
 const SuccessPage = () => {
-    const baseUrl = config.baseURL;
     const navigate = useNavigate();
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -31,11 +29,11 @@ const SuccessPage = () => {
     const date = searchParams.get("date");
 
     useEffect(() => {
-        setImage(`${baseUrl}api/final_file?date=` + date + `&groupid=` + groupid);
+        setImage(`${process.env.BACKEND_URL}/final_file?date=` + date + `&groupid=` + groupid);
     }, [groupid, date]);
 
     const get_QR = async () => {
-        const response = await fetch(`${baseUrl}api/create-qr?groupid=${groupid}&date=${date}`, { method: 'POST' });
+        const response = await fetch(`${process.env.BACKEND_URL}/create-qr?groupid=${groupid}&date=${date}`, { method: 'POST' });
         if (response.ok) {
             const blob = await response.blob();
             const imageUrl = URL.createObjectURL(blob);

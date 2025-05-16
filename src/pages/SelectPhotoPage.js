@@ -11,7 +11,6 @@ import frame4 from "../images/frames/4-1.png"
 import frame4_1 from "../images/frames/4-1.png"
 import frame4_2 from "../images/frames/4-2.png"
 import blank from "../images/blank.png"
-import config from "../config/config";
 
 /**
  * 사진 선택 페이지
@@ -19,8 +18,6 @@ import config from "../config/config";
  * @author 김이현
  */
 const SelectPhotoPage = () => {
-    const baseUrl = config.baseURL;
-
     const FRAMES = {
         "frame1":{"frame":frame1,"selected":false,"frameID":1,"maxCount":4},
         "frame2":{"frame":frame2,"selected":false,"frameID":2,"maxCount":4},
@@ -59,12 +56,12 @@ const SelectPhotoPage = () => {
 
         // PictureCompletedPage에서 넘겨주는 쿼리파라미터 date, groupid값으로 file api 이용해서 이미지 불러오기
         setPhotos([
-            baseUrl + `api/file?date=`+date+`&type=original&groupid=`+groupid+`&index=1`,
-            baseUrl + `api/file?date=`+date+`&type=original&groupid=`+groupid+`&index=2`,
-            baseUrl + `api/file?date=`+date+`&type=original&groupid=`+groupid+`&index=3`,
-            baseUrl + `api/file?date=`+date+`&type=original&groupid=`+groupid+`&index=4`,
-            baseUrl + `api/file?date=`+date+`&type=original&groupid=`+groupid+`&index=5`,
-            baseUrl + `api/file?date=`+date+`&type=original&groupid=`+groupid+`&index=6`,
+            process.env.BACKEND_URL + `/file?date=`+date+`&type=original&groupid=`+groupid+`&index=1`,
+            process.env.BACKEND_URL + `/file?date=`+date+`&type=original&groupid=`+groupid+`&index=2`,
+            process.env.BACKEND_URL + `/file?date=`+date+`&type=original&groupid=`+groupid+`&index=3`,
+            process.env.BACKEND_URL + `/file?date=`+date+`&type=original&groupid=`+groupid+`&index=4`,
+            process.env.BACKEND_URL + `/file?date=`+date+`&type=original&groupid=`+groupid+`&index=5`,
+            process.env.BACKEND_URL + `/file?date=`+date+`&type=original&groupid=`+groupid+`&index=6`,
         ]);
     }, [date,groupid,frameid]);//frameid,groupid에 종속적인 useEffect(), frameid,groupid를 받아와야 실행함
     const checkFrames = ()=>{
@@ -143,7 +140,7 @@ const SelectPhotoPage = () => {
 
 
             // 주소에 api 주소 적기
-            const response = await fetch(baseUrl + "api/upload", {
+            const response = await fetch(process.env.BACKEND_URL + "/upload", {
                 method: "POST",
                 body: formData,
             });
