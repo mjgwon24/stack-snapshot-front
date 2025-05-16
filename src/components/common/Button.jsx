@@ -44,7 +44,7 @@ export const DefaultButton = styled.button`
     border: 2px solid ${({ btnType }) => BUTTON_STYLES[btnType].border};
     cursor: pointer;
     transition: background 0.15s, border-color 0.15s;
-    min-height: 40px;
+    width: fit-content;
 
     &:hover {
         background: ${({ btnType }) => BUTTON_STYLES[btnType].hoverBg};

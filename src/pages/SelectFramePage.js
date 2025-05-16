@@ -14,8 +14,10 @@ import {useFrameStore} from "../store/useFrameStore";
  */
 const SelectFramePage = () => {
     const navigate = useNavigate();
-    const selectedFrame = useFrameStore((state) => state.selectedFrame);
-    const setSelectedFrame = useFrameStore((state) => state.setSelectedFrame);
+    const { selectedFrame, setSelectedFrame } = useFrameStore((state) => ({
+        selectedFrame: state.selectedFrame,
+        setSelectedFrame: state.setSelectedFrame,
+    }));
 
     const frames = [0, 1, 2, 3];
 
