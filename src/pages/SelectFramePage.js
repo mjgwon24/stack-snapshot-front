@@ -1,9 +1,10 @@
-import React, {useState} from "react";
-import {OuterLayout, PageTitle} from "../components/layout/CommonLayout";
+import React, { useState } from "react";
+import { OuterLayout, PageTitle } from "../components/layout/CommonLayout";
 import StepIndicator from "../components/step/StepIndicator";
 import InnerBox from "../components/layout/InnerBox";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from "../components/common/Button";
+import {useFrameStore} from "../store/useFrameStore";
 
 /**
  * 프레임 선택 페이지
@@ -13,7 +14,10 @@ import Button from "../components/common/Button";
  */
 const SelectFramePage = () => {
     const navigate = useNavigate();
-    const [selectFrame, setSelectFrame] = useState(0);
+    const selectedFrame = useFrameStore((state) => state.selectedFrame);
+    const setSelectedFrame = useFrameStore((state) => state.setSelectedFrame);
+
+    const frames = [0, 1, 2, 3];
 
     return (
         <OuterLayout>
@@ -21,17 +25,29 @@ const SelectFramePage = () => {
 
             <InnerBox>
                 <PageTitle>
-                    <span>프레임</span>을<br/>선택해주세요
+                    <span>프레임</span>을<br />선택해주세요
                 </PageTitle>
 
-                <div className="bg-gray-300 w-[220px] h-[340px] mb-8" style={{filter: "drop-shadow(2px 4px 5px rgba(0, 0, 0, 0.25))"}} />
+                <div
+                    className="bg-gray-300 w-[220px] h-[340px] mb-8"
+                    style={{ filter: "drop-shadow(2px 4px 5px rgba(0, 0, 0, 0.25))" }}
+                />
 
-                <div className="flex flex-col items-center justify-center gap-6 pt-2 bg-white w-full h-[270px] rounded-b-[30px] border-t border-[#F2D219]" style={{background: "linear-gradient(0deg, #FFF 0%, #FFF 100%), #FFF9CF"}}>
+                <div className="flex flex-col items-center justify-center gap-6 pt-2 bg-white w-full h-[270px] rounded-b-[30px] border-t border-[#F2D219]"
+                     style={{ background: "linear-gradient(0deg, #FFF 0%, #FFF 100%), #FFF9CF" }}>
                     <div className="flex flex-row justify-between gap-5">
-                        <div className="bg-gray-200 w-[90px] h-[130px] border-2 border-black" />
-                        <div className="bg-gray-200 w-[90px] h-[130px]" />
-                        <div className="bg-gray-200 w-[90px] h-[130px]" />
-                        <div className="bg-gray-200 w-[90px] h-[130px]" />
+                        {frames.map((_, idx) => (
+                            <div
+                                key={idx}
+                                className={
+                                    `bg-gray-200 w-[90px] h-[130px] cursor-pointer transition-all duration-150
+                                    ${selectedFrame === idx
+                                        ? "border-2 border-black"
+                                        : "border-2 border-transparent"}`
+                                }
+                                onClick={() => setSelectedFrame(idx)}
+                            />
+                        ))}
                     </div>
 
                     <Button type="default" onClick={() => navigate('/picture')}>
