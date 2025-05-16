@@ -4,7 +4,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import logo1 from '../images/icons/stack_dev_logo2.png';
 import logo2 from '../images/icons/arrow_right_black.png';
 import logo3 from '../images/icons/PictureCompletedPage_imoticon.png';
-import config from "../config/config";
 import "../css/mainPage.css"
 import "../css/style.css"
 
@@ -15,7 +14,6 @@ import "../css/style.css"
  * author 임석진
  */
 const PictureCompletedPage = () => {
-    const baseUrl = config.baseURL;
     const location = useLocation();
     const navigate = useNavigate(); // Initialize the useNavigate hook
     const [photoUrls,setPhotoUrls] = useState(location.state.data || {});
@@ -49,7 +47,7 @@ const PictureCompletedPage = () => {
                         {photoUrls.map((url, index) => (
                             <div key={index}>
                                 <img className="width-150px height-150px margin-bottom-10px"
-                                    src={baseUrl + `api/file?date=${url.split("_")[2]}_${url.split("_")[3]}&groupid=${url.split("_")[1]}&index=${index+1}`}
+                                    src={process.env.BACKEND_URL + `/file?date=${url.split("_")[2]}_${url.split("_")[3]}&groupid=${url.split("_")[1]}&index=${index+1}`}
                                     alt={`사진 ${index + 1}`}
                                 />
                             </div>
