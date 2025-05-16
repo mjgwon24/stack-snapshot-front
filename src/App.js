@@ -11,6 +11,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import TestPage from "./pages/TestPage";
 import PrizeDrawPage from "./pages/PrizeDrawPage";
 import DrawResultPage from "./pages/DrawResultPage";
+import Example from "./pages/Example";
 
 
 const AppRoutes = () => {
@@ -22,8 +23,9 @@ const AppRoutes = () => {
         {path: '/picture/select-photo', element: <SelectPhotoPage/>},
         {path: '/picture/success', element: <SuccessPage/>},
         {path: '/test', element: <TestPage/>},
-        {path: '/picture/draw', element: <PrizeDrawPage /> },
-        { path: "/picture/draw-result", element: <DrawResultPage /> },
+        {path: '/picture/draw', element: <PrizeDrawPage />},
+        {path: "/picture/draw-result", element: <DrawResultPage />},
+        {path: '/example', element: <Example/>},
         {path: '*', element: <NotFoundPage/>}
     ];
 
