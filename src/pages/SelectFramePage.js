@@ -17,7 +17,7 @@ const SelectFramePage = () => {
 
     return (
         <OuterLayout>
-            <StepIndicator currentStep={2} stepCount={3} allCompleted={true} />
+            <StepIndicator currentStep={1} stepCount={3} />
 
             <InnerBox>
                 <PageTitle>
@@ -34,7 +34,7 @@ const SelectFramePage = () => {
                         <div className="bg-gray-200 w-[90px] h-[130px]" />
                     </div>
 
-                    <Button type="yellow" onClick={() => navigate('/picture')}>
+                    <Button type="default" onClick={() => navigate('/picture')}>
                         이걸로 할게요!
                     </Button>
                 </div>
