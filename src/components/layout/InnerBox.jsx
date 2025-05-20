@@ -5,7 +5,7 @@ import PictureIcon from "../../images/icons/picture-icon.png";
 const RelativeWrapper = styled.div`
     position: relative;
     width: 550px;
-    height: 750px;
+    height: 650px;
 `;
 
 const InnerBoxWrapper = styled.div`
