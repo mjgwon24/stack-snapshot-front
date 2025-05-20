@@ -7,9 +7,7 @@ import React,{useEffect,useState} from "react";
 import frame1 from "../images/frames/1.png"
 import frame2 from "../images/frames/2.png"
 import frame3 from "../images/frames/3.png"
-import frame4 from "../images/frames/4-1.png"
-import frame4_1 from "../images/frames/4-1.png"
-import frame4_2 from "../images/frames/4-2.png"
+import frame4 from "../images/frames/4.png"
 import blank from "../images/blank.png"
 
 /**
@@ -23,7 +21,7 @@ const SelectPhotoPage = () => {
         "frame2":{"frame":frame2,"selected":false,"frameID":2,"maxCount":4},
         // "frame2":{"shape_small":[125,192],"shape_big":[330,506],"realsize":[600,920],"frame":frame2,"selected":false,"frameID":2,"maxCount":6},
         "frame3":{"frame":frame3,"selected":false,"frameID":3,"maxCount":4},
-        "frame4":{"frame":frame4_1,"selected":false,"frameID":4,"maxCount":4},
+        "frame4":{"frame":frame4,"selected":false,"frameID":4,"maxCount":4},
     };
 
     //초기에 불러오는 사진들
@@ -189,12 +187,7 @@ const SelectPhotoPage = () => {
 
             <div></div>
             {frameid!=4&&nowDate&&nowDate==1}
-            {frameid!=4
-                ?<div><img className={`frame frame${frameid} big`} src={FRAMES[`frame${frameid}`]["frame"]} alt="mainframe"></img></div>:
-                frameid==4&&nowDate&&nowDate!=1?
-                    <div><img className={`frame frame${frameid} big`} src={frame4_1} alt="mainframe"></img></div>:
-                    <div><img className={`frame frame${frameid} big`} src={frame4_2} alt="mainframe"></img></div>
-            }
+            <div><img className={`frame frame${frameid} big`} src={FRAMES[`frame${frameid}`]["frame"]} alt="mainframe"></img></div>
 
             <div></div>
             <div className="grid-frame">

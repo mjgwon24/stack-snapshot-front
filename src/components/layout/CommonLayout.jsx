@@ -10,7 +10,6 @@ export const OuterLayout = styled.div`
   justify-content: center;
   min-width: 600px;
   width: 100%;
-  min-height: 890px;
   height: 100vh;
   gap: 1.75rem;
 `;
