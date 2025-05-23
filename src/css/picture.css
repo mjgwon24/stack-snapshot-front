@@ -7,9 +7,7 @@
 }
 video {
     width: 350px !important;
-    height: 479px !important;
-    margin-bottom: 20px;
-    margin-left: 400px;
+    height: 419px !important;
 }
 .flash {
     position: fixed;
@@ -184,7 +182,7 @@ video {
 .countdown {
     position: absolute;
     top: 50%;
-    left: 30%;
+    left: 50%;
     transform: translate(-50%, -50%);
     font-size: 100px; /* 글자 크기 */
     font-weight: bold;
