@@ -54,12 +54,12 @@ const SelectPhotoPage = () => {
 
         // PictureCompletedPage에서 넘겨주는 쿼리파라미터 date, groupid값으로 file api 이용해서 이미지 불러오기
         setPhotos([
-            process.env.BACKEND_URL + `/file?date=`+date+`&type=original&groupid=`+groupid+`&index=1`,
-            process.env.BACKEND_URL + `/file?date=`+date+`&type=original&groupid=`+groupid+`&index=2`,
-            process.env.BACKEND_URL + `/file?date=`+date+`&type=original&groupid=`+groupid+`&index=3`,
-            process.env.BACKEND_URL + `/file?date=`+date+`&type=original&groupid=`+groupid+`&index=4`,
-            process.env.BACKEND_URL + `/file?date=`+date+`&type=original&groupid=`+groupid+`&index=5`,
-            process.env.BACKEND_URL + `/file?date=`+date+`&type=original&groupid=`+groupid+`&index=6`,
+            process.env.REACT_APP_BACKEND_URL + `/photos/group/${groupid}/1`,
+            process.env.REACT_APP_BACKEND_URL + `/photos/group/${groupid}/2`,
+            process.env.REACT_APP_BACKEND_URL + `/photos/group/${groupid}/3`,
+            process.env.REACT_APP_BACKEND_URL + `/photos/group/${groupid}/4`,
+            process.env.REACT_APP_BACKEND_URL + `/photos/group/${groupid}/5`,
+            process.env.REACT_APP_BACKEND_URL + `/photos/group/${groupid}/6`,
         ]);
     }, [date,groupid,frameid]);//frameid,groupid에 종속적인 useEffect(), frameid,groupid를 받아와야 실행함
     const checkFrames = ()=>{
@@ -138,7 +138,7 @@ const SelectPhotoPage = () => {
 
 
             // 주소에 api 주소 적기
-            const response = await fetch(process.env.BACKEND_URL + "/upload", {
+            const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/upload", {
                 method: "POST",
                 body: formData,
             });

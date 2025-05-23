@@ -29,11 +29,11 @@ const SuccessPage = () => {
     const date = searchParams.get("date");
 
     useEffect(() => {
-        setImage(`${process.env.BACKEND_URL}/final_file?date=` + date + `&groupid=` + groupid);
+        setImage(`${process.env.REACT_APP_BACKEND_URL}/final_file?date=` + date + `&groupid=` + groupid);
     }, [groupid, date]);
 
     const get_QR = async () => {
-        const response = await fetch(`${process.env.BACKEND_URL}/create-qr?groupid=${groupid}&date=${date}`, { method: 'POST' });
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/create-qr?groupid=${groupid}&date=${date}`, { method: 'POST' });
         if (response.ok) {
             const blob = await response.blob();
             const imageUrl = URL.createObjectURL(blob);

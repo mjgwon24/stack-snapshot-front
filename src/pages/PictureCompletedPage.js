@@ -47,7 +47,7 @@ const PictureCompletedPage = () => {
                         {photoUrls.map((url, index) => (
                             <div key={index}>
                                 <img className="width-150px height-150px margin-bottom-10px"
-                                    src={process.env.BACKEND_URL + `/file?date=${url.split("_")[2]}_${url.split("_")[3]}&groupid=${url.split("_")[1]}&index=${index+1}`}
+                                    src={process.env.REACT_APP_BACKEND_URL + `/photos/group/${groupid}/${index+1}`}
                                     alt={`사진 ${index + 1}`}
                                 />
                             </div>

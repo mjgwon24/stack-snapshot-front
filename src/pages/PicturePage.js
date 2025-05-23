@@ -123,10 +123,8 @@ const PicturePage = ({ setTeamId }) => {
 
     const uploadPhotos = async (formData) => {
         try {
-            const response = await axios.post(process.env.BACKEND_URL + "/origin-upload", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
+            const response = await axios.post(process.env.REACT_APP_BACKEND_URL + "/photos", formData, {
+                headers: { "Content-Type": "multipart/form-data" },
             });
             console.log("Upload response:", response.data);
             navigate("/picture/completed", {
