@@ -7,7 +7,7 @@ const TestPage = () => {
     const [message, setMessage] = useState("");
 
     useEffect(() => {
-        const apiUrl = process.env.BACKEND_URL + `/test`;
+        const apiUrl = process.env.REACT_APP_BACKEND_URL + `/test`;
 
         fetch(apiUrl)
             .then(res => res.text())
