@@ -8,6 +8,11 @@ import StepIndicator from "../components/step/StepIndicator";
 import InnerBox from "../components/layout/InnerBox";
 import Button from "../components/common/Button";
 import { useCameraStore } from "../store/useCameraStore";
+import { useFrameStore } from "../store/useFrameStore";
+import { useGroupStore } from "../store/useGroupStore";
+import { useDateStore } from "../store/useDateStore";
+import { useImageStore } from "../store/useImageStore";
+import { useTimeStore } from "../store/useTimeStore";
 /**
  * 메인 페이지
  * @since
@@ -26,11 +31,20 @@ const PicturePage = ({ setTeamId }) => {
     const [searchParams] = useSearchParams();
 
     const { stream, startCamera, stopCamera } = useCameraStore();
-    const frameid = searchParams.get("frameid");
-    const groupid = searchParams.get("groupid");
-    const date = searchParams.get("date");
+    const images = useImageStore((state) => state.images);
+    const setImages = useImageStore((state) => state.setImages);
 
-    useEffect(() => {}, [date, groupid, frameid]);
+    const selectedFrame = useFrameStore((state) => state.selectedFrame);
+    const setSelectedFrame = useFrameStore((state) => state.setSelectedFrame);
+
+    const groupId = useGroupStore((state) => state.groupId);
+    const setGroupId = useGroupStore((state) => state.setGroupId);
+
+    const date = useDateStore((state) => state.date);
+    const setDate = useDateStore((state) => state.setDate);
+
+    const time = useTimeStore((state) => state.time);
+    const setTime = useTimeStore((state) => state.setTime);
 
     const frameSizes = {
         1: { width: 273, height: 373 },
@@ -38,7 +52,7 @@ const PicturePage = ({ setTeamId }) => {
         3: { width: 272, height: 328 },
         4: { width: 340, height: 272 },
     };
-    const { width, height } = frameSizes[frameid];
+    const { width, height } = frameSizes[selectedFrame+1];
 
     const initializeCamera = async () => {
         try {
@@ -115,9 +129,12 @@ const PicturePage = ({ setTeamId }) => {
             const response = await axios.post(process.env.REACT_APP_BACKEND_URL + "/photos", formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
-            navigate("/picture/completed", {
-                state: { data: response.data, frameid: frameid },
-            });
+            setImages(response.data.fileNames);
+            setGroupId(response.data.groupId);
+            setTime(response.data.timeStamp);
+            setDate(response.data.date);
+            
+            navigate("/picture/select-photo");
             return response.data;
         } catch (err) {
             console.error("사진 업로드 실패:", err);
@@ -132,17 +149,26 @@ const PicturePage = ({ setTeamId }) => {
         };
     }, []);
 
+    useEffect(() => {
+        console.log("images updated", images);
+      }, [images]);
+
+      useEffect(() => {
+        console.log("groupId updated", groupId);
+      }, [groupId]);
+
     return (
         <OuterLayout>
             <StepIndicator currentStep={2} stepCount={3} />
             <InnerBox className="p-8">
-                <PageTitle>사진을<br /><span>촬영</span>해주세요</PageTitle>
+                {isCapturing ? <PageTitle><span>촬영 중...</span></PageTitle>:<PageTitle>사진을<br /><span>촬영</span>해주세요</PageTitle>}
+                
                 <div ref={flashRef} className="flash" />
                 <div className={`w-full h-full px-16 flex flex-col ${isCapturing ? "" : "pb-4"}`}>
                     <div className={`w-full flex flex-row justify-center items-center ${isCapturing ? "" : "h-full"}`}>
                         <video
                             ref={videoRef}
-                            key={frameid}
+                            key={selectedFrame}
                             autoPlay
                             playsInline
                             style={{
@@ -160,6 +186,8 @@ const PicturePage = ({ setTeamId }) => {
                             </div>
                         </div>
                     </div>
+                </div>
+                <div className="h-16 flex flex-col justify-center">
                     <PageTitle className={`${isCameraStarted ? "" : "hidden"} py-6`}>
                         <span>{photoNumber}</span> / 6
                     </PageTitle>

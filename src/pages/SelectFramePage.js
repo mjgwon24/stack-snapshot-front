@@ -36,7 +36,7 @@ const SelectFramePage = () => {
                     style={{ filter: "drop-shadow(2px 4px 5px rgba(0, 0, 0, 0.25))"}}
                 >
                     <div className="w-full flex flex-row justify-center">
-                        <img src={frames[selectedFrame]} className={`${selectedFrame==3?"w-[300px]":"h-[300px]"}`}/>
+                        <img src={frames[selectedFrame]} className={`${selectedFrame==3?"w-[250px]":"h-[250px]"}`}/>
                     </div>
                 </div>
 
@@ -60,7 +60,7 @@ const SelectFramePage = () => {
                         ))}
                     </div>
 
-                    <Button type="default" onClick={() => navigate('/picture?frameid='+selectedFrame)}>
+                    <Button type="default" onClick={() => navigate('/picture')}>
                         이걸로 할게요!
                     </Button>
                 </div>
