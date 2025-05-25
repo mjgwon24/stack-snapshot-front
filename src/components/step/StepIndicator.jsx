@@ -39,8 +39,8 @@ const StepList = styled.div`
 `;
 
 const StepCircle = styled.div`
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     background: ${({completed}) => completed ? '#FFB200' : 'white'};
     border: 2px solid #FFB200;
     border-radius: 50%;

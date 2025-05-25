@@ -22,7 +22,7 @@ export const PageTitle = styled.p`
   font-size: 30px;
   line-height: 1.25;
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   span {
     color: #FFB200;
   }
