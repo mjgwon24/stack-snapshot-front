@@ -39,6 +39,7 @@ const SelectPhotoPage = () => {
 
     //선택한 사진들, 순서대로
     const [SelectedPhotos, setSelectedPhotos] = useState([blank,blank,blank,blank]);
+    const [SelectedPhotoIndexes, setSelectedPhotoIndexs] = useState([-1,-1,-1,-1]);
     const [currnetFrame, setCurrnetFrame] = useState(FRAMES["frame1"]);
     // const [nowDate,setNowDate] = useState(1);
     const [nowDate,setNowDate] = useState(new Date().getDate() || null);
@@ -70,10 +71,8 @@ const SelectPhotoPage = () => {
     }
     const getSelectedPhoto = ()=>{
         let res = [];
-        for(let i=0;i<SelectedPhotos.length;i++){
-            if(SelectedPhotos[i]!==blank&&SelectedPhotos[i]!==null){
-                res.push(photos[i])
-            }
+        for(let i=0;i<SelectedPhotoIndexes.length;i++){
+            res.push(photos[SelectedPhotoIndexes[i]-1])
         }
         return res
     }
@@ -85,11 +84,19 @@ const SelectPhotoPage = () => {
             return newPhotos;
         });
     }
+    const setPhotoIndexes = (box_index,index)=>{
+        setSelectedPhotoIndexs(prevIndexes => {
+            const newIndexes = [...prevIndexes];
+            newIndexes[box_index] = index;
+            return newIndexes;
+        });
+    }
     const addPhoto = (ind) => {
         let box_index = getFirstIndex()
         if(box_index!=-1&&currnetFrame["maxCount"]>box_index){
             console.log(photos);
             setPhoto(box_index,process.env.REACT_APP_BACKEND_URL + `/photos/group/${groupId}/${ind+1}`);
+            setPhotoIndexes(box_index,ind+1);
             setIndex(index+1);
         }
     }
@@ -99,6 +106,7 @@ const SelectPhotoPage = () => {
             newPhotos[ind] = blank;
             return newPhotos;
         });
+        setPhotoIndexes(ind,-1);
         setIndex(index-1);
         getFirstIndex();
     }
@@ -219,7 +227,6 @@ const SelectPhotoPage = () => {
             <StepIndicator currentStep={3} stepCount={3} />
             <InnerBox className="p-8 pb-4">
                 <PageTitle>마음에 드는 사진을<br/><span>{FRAMES[`frame${selectedFrame+1}`]["maxCount"]}장</span> 선택해주세요!</PageTitle>
-                
                 <div className="w-full flex flex-col gap-3">
                     <div className={`flex flex-col justify-center ${selectedFrame==3?"h-[242px]":""}`}>
                         <div className="w-full flex flex-row justify-center relative">
