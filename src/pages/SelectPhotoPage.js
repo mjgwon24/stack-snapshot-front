@@ -230,10 +230,10 @@ const SelectPhotoPage = () => {
                 <div className="w-full flex flex-col gap-3">
                     <div className={`flex flex-col justify-center ${selectedFrame==3?"h-[242px]":""}`}>
                         <div className="w-full flex flex-row justify-center relative">
-                            <img className={`z-0 ${selectedFrame==3?"h-[75%]":"w-[40%]"} pointer-events-none`} src={FRAMES[`frame${selectedFrame+1}`]['frame']}/>
-                            <div className="absolute z-10">
+                            <div className="absolute z-0">
                                 {FrameComponents[selectedFrame](SelectedPhotos)}
                             </div>
+                            <img className={`z-10 ${selectedFrame==3?"h-[75%]":"w-[40%]"} pointer-events-none`} src={FRAMES[`frame${selectedFrame+1}`]['frame']}/>
                         </div>
                     </div>
                     <div className="relative w-full max-w-[600px] mx-auto p-2 rounded-2xl border border-yellow-500 bg-white shadow overflow-hidden">
