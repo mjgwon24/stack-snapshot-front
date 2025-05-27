@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { OuterLayout, PageTitle } from "../components/layout/CommonLayout";
 import StepIndicator from "../components/step/StepIndicator";
 import InnerBox from "../components/layout/InnerBox";
@@ -21,7 +21,9 @@ const SelectFramePage = () => {
     const setSelectedFrame = useFrameStore((state) => state.setSelectedFrame);
 
     const frames = [frame1,frame2,frame3,frame4];
-
+    useEffect(()=>{
+        setSelectedFrame(0);
+    },[])
     return (
         <OuterLayout>
             <StepIndicator currentStep={1} stepCount={3} />
