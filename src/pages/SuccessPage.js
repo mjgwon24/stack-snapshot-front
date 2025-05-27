@@ -13,6 +13,7 @@ import { OuterLayout, PageTitle } from "../components/layout/CommonLayout";
 import StepIndicator from "../components/step/StepIndicator";
 import InnerBox from "../components/layout/InnerBox";
 import Button from "../components/common/Button";
+import { useFrameStore } from "../store/useFrameStore";
 /**
  * 성공 페이지
  * @since 2024.10.30
@@ -32,6 +33,7 @@ const SuccessPage = () => {
     const [Image, setImage] = useState("");
     const [searchParams, setSearchParams] = useSearchParams();
     const groupId = useGroupStore((state) => state.groupId);
+    const selectedFrame = useFrameStore((state) => state.selectedFrame);
     const date = useDateStore((state) => state.date);
     const timeStamp = useTimeStore((state) => state.time);
 
@@ -50,13 +52,15 @@ const SuccessPage = () => {
 
     return (
         <OuterLayout>
-            <StepIndicator currentStep={3} stepCount={3} />
-            <InnerBox className="px-32 pb-4" showIcon={true}>
+            <StepIndicator allCompleted/>
+            <InnerBox className="pb-4" showIcon={true}>
                 <PageTitle><span>사진이 완성되었어요!</span></PageTitle>
-                <img className={"border-2 border-[#000]"} src={`${process.env.REACT_APP_BACKEND_URL}/photos/final/group_${groupId}_final_${date}_${timeStamp}.png`}/>
-                <div className="flex flex-row gap-3">
-                    <Button type="yellow" onClick={()=>{}}>다운로드</Button>
-                    <Button type="pink" onClick={()=>{}}>경품 추첨</Button>
+                <div className={`${selectedFrame==3?"px-16":"px-32"}`}>
+                    <img className={`border-2 border-[#000] ${selectedFrame==3?"w-full":"w-full"}`} src={`${process.env.REACT_APP_BACKEND_URL}/photos/final/group_${groupId}_final_${date}_${timeStamp}.png`}/>
+                </div>
+                <div className="flex flex-row gap-3 px-32">
+                    <Button type="yellow" onClick={()=>{navigate('/picture/qr')}}>다운로드</Button>
+                    <Button type="pink" onClick={()=>{navigate('/picture/draw')}}>경품 추첨</Button>
                 </div>
 
             </InnerBox>
