@@ -11,6 +11,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import TestPage from "./pages/TestPage";
 import PrizeDrawPage from "./pages/PrizeDrawPage";
 import DrawResultPage from "./pages/DrawResultPage";
+import DownloadPage from "./pages/DownloadPage";
 import Example from "./pages/Example";
 
 
@@ -26,6 +27,7 @@ const AppRoutes = () => {
         {path: '/picture/draw', element: <PrizeDrawPage />},
         {path: "/picture/draw-result", element: <DrawResultPage />},
         {path: '/example', element: <Example/>},
+        {path: '/picture/qr', element: <DownloadPage/>},
         {path: '*', element: <NotFoundPage/>}
     ];
 

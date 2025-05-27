@@ -16,7 +16,8 @@ import "../css/style.css"
 const PictureCompletedPage = () => {
     const location = useLocation();
     const navigate = useNavigate(); // Initialize the useNavigate hook
-    const [photoUrls,setPhotoUrls] = useState(location.state.data || {});
+    const [groupid,setGroupid] = useState(location.state.frameid || {}); 
+    const [photoUrls,setPhotoUrls] = useState(location.state.data.fileNames || {});
     const [frameid,setFrameid] = useState(location.state.frameid || {});
     // console.log(location);
     console.log(location.state.data);
